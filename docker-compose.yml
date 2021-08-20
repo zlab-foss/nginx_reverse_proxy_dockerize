@@ -12,6 +12,8 @@ services:
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs
+      - ./unrestricted_size.conf:/etc/nginx/conf.d/unrestricted_size.conf
+
     labels:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
 
@@ -28,6 +30,8 @@ services:
       - certs:/etc/nginx/certs
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+      - ./unrestricted_size.conf:/etc/nginx/conf.d/unrestricted_size.conf
+
 
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
